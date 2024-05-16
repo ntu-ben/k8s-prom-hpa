@@ -6,6 +6,15 @@ metadata:
 data:
   config.yaml: |
     rules:
+    - seriesQuery: 'http_requests{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^(.*)_total"
+        as: "${1}_total"
+      metricsQuery: sum(rate(http_requests_total{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>)
     - seriesQuery: '{__name__=~"^container_.*",container_name!="POD",namespace!="",pod_name!=""}'
       seriesFilters: []
       resources:

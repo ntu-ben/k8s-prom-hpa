@@ -17,13 +17,14 @@ spec:
     spec:
       containers:
         - name: podinfod
-          image: stefanprodan/podinfo:0.0.1
+          #image: stefanprodan/podinfo:0.0.1
+          image: stefanprodan/podinfo
           imagePullPolicy: Always
           command:
             - ./podinfo
-            - -port=9898
-            - -logtostderr=true
-            - -v=2
+              #- --port 9898
+              #- -logtostderr=true
+              #- --version 2
           volumeMounts:
             - name: metadata
               mountPath: /etc/podinfod/metadata

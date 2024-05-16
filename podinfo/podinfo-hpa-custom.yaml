@@ -1,5 +1,5 @@
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: podinfo
@@ -17,4 +17,4 @@ spec:
           name: http_requests
         target:
           type: AverageValue
-          averageValue: 10
+          averageValue: 1000m
